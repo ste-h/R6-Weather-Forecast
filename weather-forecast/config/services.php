@@ -35,4 +35,8 @@ return [
         ],
     ],
 
+    'weatherbit' => [
+        'key' => env('WEATHERBIT_API_KEY'),
+        'url' => env('WEATHERBIT_URL'),
+    ],
 ];
