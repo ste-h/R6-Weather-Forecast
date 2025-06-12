@@ -1,45 +1,58 @@
 ## Requirements:
-Follow the [Laravel Setup Instructions](https://laravel.com/docs/12.x/installation) to install PHP, Composer, and Laravel. You'll also need Node and NPM or bun installed.
+
+Follow the [Laravel Setup Instructions](https://laravel.com/docs/12.x/installation) to install PHP, Composer, and Laravel. You'll also need both Node and NPM, or bun installed.
 
 
-## Setup instructions
-Clone the repository
+## Setup Instructions
 
-Navigate to the `weather-forecast` folder and install dependencies:
-`composer install`
-`npm install`
+1. Clone the repository.
 
-You'll also need a weatherbit API key to fetch weather data, sign up for a free account at [Weatherbit](https://www.weatherbit.io/).
+2. Navigate to the `weather-forecast` folder and install dependencies:
+    - `composer install`
+    - `npm install`
 
-Copy `.env.example` to `.env` if it doesn't exist, then add your API key: 
-`WEATHERBIT_API_KEY=`
+3. Get a Weatherbit API key:
+    - Sign up at [Weatherbit](https://www.weatherbit.io/).
+    - Copy `.env.example` to `.env` if it doesn't exist.
+    - Add your API key to the `.env` file:
+      ```
+      WEATHERBIT_API_KEY=your_key_here
+      ```
 
-Run the development server:
-`composer run dev`
+4. Run the development server:
+    - `composer run dev`
 
-If you get SQL errors you may need to run:
-`php artisan migrate`
+5. (Optional) If you encounter SQL errors, run:
+    - `php artisan migrate`
 
 ## Usage
+
 Visit `http://localhost:8000` in your web browser to view the application.
 
-This is just a simple page with the dropdown to select a city. There's also a dummy error dropdown to showcase the error handling when the frontend requests an invalid city.
+This is just a simple page with the dropdown to select a city, the table updates on selecting a new city. There's also a dummy error dropdown to showcase the error handling when the frontend requests an invalid city.
 
 ![Home page image](https://i.imgur.com/5kVvFDj.png)
 
 I used tailwindcss for styling, so dark and light modes are supported, as I believe the page defaults to your system's theme. There's also a toggle to switch between modes in the top left.
 
-## Testing the console command
-You can test the console command to fetch and display weather forecasts for multiple cities by running `php artisan forecast "city1, city2, city3"` in your terminal. Enclose city names in quotes, and multiple cities can be separated with commas.
+## Using the console command
+
+You can test the command to fetch and display weather forecasts for multiple cities in your terminal by running `php artisan forecast "city1, city2, city3"` in your terminal.
+
+Make sure to:
+- Enclose city names in quotes. 
+- Separate multiple cities with commas.
 
 ### Example command
+
 This command also displays error message for the invalid city (errorcity123 in this case)
 `php artisan forecast "brisbane, sunshine coast, errorcity123, gold coast"`
 
 ![Console command image](https://i.imgur.com/lWgx4L7.png)
 
 ## Assumptions and design decisions
-The app uses the suggested weatherbit API to fetch weather forecasts for the next 5 days.
+
+The app uses the suggested weatherbit API to fetch weather forecasts for the next five days.
 
 Requests to the weatherbit API are handled by `WeatherController.php`. The frontend uses React and Tailwind CSS for the UI, and there's a simple dropdown to select the city to display weather forecasts for.
 
@@ -51,8 +64,9 @@ I avoided using LLMs for this task, first checking Laravel documentation / guide
 
 
 ### Additional improvements
+
 For the future, I'd implement a service class to handle HTTP request logic, and not call the API directly from the controller. The current implementation was just to keep the logic simple and straightforward for this small app.
 
-I would likely use additional styling libraries on the frontend, but I wanted to keep the app as simple as possible.
+I would likely use additional styling libraries on the frontend, but minimal styling was needed and I wanted to keep the app as simple as possible.
 
-Currently forecasting the next 5 days is hardcoded, but the app could be extended to allow users to select the number of days to forecast, then the console output and frontend could be updated to handle a dynamic number of days.
+Currently forecasting the next 5 days is hardcoded, but the app could be extended to allow users to select the number of days to forecast. The console output and frontend could be updated to handle a dynamic number of days.
