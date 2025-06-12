@@ -1,6 +1,6 @@
 ## Requirements:
 
-Follow the [Laravel Setup Instructions](https://laravel.com/docs/12.x/installation) to install PHP, Composer, and Laravel. You'll also need both Node and NPM, or bun installed.
+Follow the [Laravel Setup Instructions](https://laravel.com/docs/12.x/installation) to install PHP, Composer, and Laravel. You'll also need both Node and NPM, or Bun installed.
 
 
 ## Setup Instructions
@@ -24,7 +24,7 @@ Follow the [Laravel Setup Instructions](https://laravel.com/docs/12.x/installati
 5. Run the database migrations:
    - `php artisan migrate`
 
-   Note: The app doesn't use a database, but you'll receive an error otherwise.
+   Note: The app doesn’t use a database, but this step is required to prevent runtime errors.
 
 6. Run the development server:
     - `composer run dev`
