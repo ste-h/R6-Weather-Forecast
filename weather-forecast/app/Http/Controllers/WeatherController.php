@@ -16,14 +16,15 @@ class WeatherController extends Controller
                 'country' => 'Australia',
                 'key' => config('services.weatherbit.key'),
                 'days' => 5,
-            ]);
+            ])-> throw();
+
             if ($response->failed()) {
                 return response()->json([
                     'success' => false,
                     'error' => 'Weather API request failed',
                 ], 502);
             }
-
+            
             return response()->json([
                 'success' => true,
                 'data' => $response->json(),
