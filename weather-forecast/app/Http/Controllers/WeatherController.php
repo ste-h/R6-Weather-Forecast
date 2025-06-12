@@ -10,12 +10,12 @@ class WeatherController extends Controller
     {
         try {
             // Change to using certificate verification, this is just for testing
-            $response = Http::withoutVerifying()->get(config('services.weatherbit.url'), [
+            $response = Http::withoutVerifying()->get('https://api.weatherbit.io/v2.0/forecast/daily', [
                 'city' => $city,
                 'country' => 'Australia',
                 'key' => config('services.weatherbit.key'),
                 'days' => 5,
-            ])-> throw();
+            ])->throw();
 
             $weatherData = $response->json();
 
