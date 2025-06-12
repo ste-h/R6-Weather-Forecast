@@ -11,7 +11,7 @@ Navigate to the `weather-forecast` folder and install dependencies:
 
 You'll also need a weatherbit API key to fetch weather data, sign up for a free account at [Weatherbit](https://www.weatherbit.io/).
 
-Copy `.env.example` to `.env` if it doesn't exist, then add your API key like:
+Copy `.env.example` to `.env` if it doesn't exist, then add your API key: 
 `WEATHERBIT_API_KEY=`
 
 Run the development server:
@@ -54,3 +54,5 @@ I avoided using LLMs for this task, first checking Laravel documentation / guide
 For the future, I'd implement a service class to handle HTTP request logic, and not call the API directly from the controller. The current implementation was just to keep the logic simple and straightforward for this small app.
 
 I would likely use additional styling libraries on the frontend, but I wanted to keep the app as simple as possible.
+
+Currently forecasting the next 5 days is hardcoded, but the app could be extended to allow users to select the number of days to forecast, then the console output and frontend could be updated to handle a dynamic number of days.
