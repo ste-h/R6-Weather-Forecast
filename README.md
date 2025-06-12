@@ -11,19 +11,23 @@ Follow the [Laravel Setup Instructions](https://laravel.com/docs/12.x/installati
     - `composer install`
     - `npm install`
 
-3. Get a Weatherbit API key:
+3. Set up Weatherbit API key:
     - Sign up at [Weatherbit](https://www.weatherbit.io/).
     - Copy `.env.example` to `.env` if it doesn't exist.
     - Add your API key to the `.env` file:
       ```
       WEATHERBIT_API_KEY=your_key_here
       ```
+4. Generate the application key:
+   - `php artisan key:generate`
 
-4. Run the development server:
+5. Run the database migrations:
+   - `php artisan migrate`
+
+   Note: The app doesn't use a database, but you'll receive an error otherwise.
+
+6. Run the development server:
     - `composer run dev`
-
-5. (Optional) If you encounter SQL errors, run:
-    - `php artisan migrate`
 
 ## Usage
 
