@@ -2,7 +2,6 @@
 
 namespace App\Http\Controllers;
 
-use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Http;
 
 class WeatherController extends Controller
@@ -18,21 +17,25 @@ class WeatherController extends Controller
                 'days' => 5,
             ])-> throw();
 
-            if ($response->failed()) {
-                return response()->json([
-                    'success' => false,
-                    'error' => 'Weather API request failed',
-                ], 502);
-            }
+            $weatherData = $response->json();
+
+            $FilteredData = [
+                'forecasts' => collect($weatherData['data']) -> map(function ($day)  {
+                    return [
+                        'date' => $day['valid_date'],
+                        'min' => $day['min_temp'],
+                        'max' => $day['max_temp'],
+                        'avg' => round(($day['min_temp'] + $day['max_temp']) / 2, 1),
+                    ];
+                }) -> toArray(),
+            ];
             
             return response()->json([
-                'success' => true,
-                'data' => $response->json(),
+                'data' => $FilteredData,
             ]);
 
         } catch (\Exception $e) {
             return response()->json([
-                'success' => false,
                 'error' => $e->getMessage(),
             ], 500);
         }
